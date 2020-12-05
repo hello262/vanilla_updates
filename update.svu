@@ -5,7 +5,7 @@ snapshot_mode = True # Включить/отключить репорты
 logo = "Ⓥ ⓐ ⓝ ⓘ ⓛ ⓛ ⓐ  Ⓑ ⓞ ⓣ" # Лого
 
 VER = "1.2.3" # Версия бота
-kVER = "1.2.3.002" # Билд бота
+kVER = "1.2.3.003" # Билд бота
 
 standart_channel = 780048937917612033
 
@@ -27,14 +27,14 @@ try:
     import configparser
     from PIL import Image, ImageFont, ImageDraw
     import requests
+    import hashlib
     from io import BytesIO
     from config_bot import TOKEN, prefix, key
-    from git import Repo
 except ModuleNotFoundError:
     print("Ошибка запуска!")
     print("Для корректной работы бота, нужны системные модули.")
     print("У вас нет какого-то модуля, проверьте!")
-    print("os, shutil, tkinter, time, sys, getpass, configparser, requests, Pillow, io")
+    print("os, shutil, tkinter, time, sys, getpass, configparser, requests, Pillow, io, hashlib")
     print("Обращаем ваше внимание на то, что это модули для загрузки под-систем.")
     print("Если все модули установлены, проверьте наличие файла конфигурации или инструмента git.")
     quit()
@@ -90,16 +90,21 @@ def init_patch():
 
 ######################- Запрос обновления (если включено) -######################
 def update():
-    try:
-        os.system('git clone https://github.com/hello262/vanilla_updates.git')
-        os.replace('vanilla_updates/update.svu', 'update.svu')
-        shutil.rmtree('vanilla_updates')
-        os.rename('update.svu', 'main.py')
-    except:
-        mb.showerror("Упс...", "Не удалось выполнить обновление!")
+    key_sha1 = hashlib.sha1(key).hexdigest()
+    if key_sha1 == b'e2da39989f2ad9dae985c98656b73b93974d62a6' or key_sha1 == b'71b9c397444943baee92fc16cc2a7981af676dd6' or key_sha1 == b'fad8d029a79f38e525b9b2d28cb6adccac9845d5':
+        try:
+            os.system('git clone https://github.com/hello262/vanilla_updates.git')
+            os.replace('vanilla_updates/update.svu', 'update.svu')
+            shutil.rmtree('vanilla_updates')
+            os.rename('update.svu', 'main.py')
+        except:
+            mb.showerror("Упс...", "Не удалось выполнить обновление!")
+            return
+        mb.showinfo("Еее!", "Обновление завершено! Перезапустите бота для принятия настроек.")
+        pass
+    else:
+        mb.showinfo("Стоять!", "Пиратам обновления не положены!")
         return
-    mb.showinfo("Еее!", "Обновление завершено! Перезапустите бота для принятия настроек.")
-    
 
 
 ######################- Импорт модулей для работы бота -######################
@@ -1107,20 +1112,18 @@ async def unmute(ctx, member: discord.Member):
 async def verify(ctx):
     print(f'Пользователь {ctx.author.name} проверяет активацию бота...')
     await ctx.send('Верификация ключа продукта...')
-    if key == "lic_8989-9898-8989" or key == "lic_7474-4747-7474":
+    key_ = hashlib.sha1(key).hexdigest() 
+    if str(key_) == "e2da39989f2ad9dae985c98656b73b93974d62a6" or key == "71b9c397444943baee92fc16cc2a7981af676dd6" or key == "fad8d029a79f38e525b9b2d28cb6adccac9845d5":
         status_verify = True
     else:
         status_verify = False
     await ctx.send('Данные получены, преобразование...')
     if status_verify == True:
         print("Расслабьтесь, ваша копия активирована!")
-        await ctx.send("Данная копия активирована!")
+        await ctx.send("> Данная копия активирована!")
     else:
-        print("Упс, у вас подделка! После закрытия бота вы не сможете его запустить!")
-        await ctx.send(f'Данная копия подделана! А это не есть хорошо! Поддельный ключ: {key}')
-        await ctx.send("В целях безопасности данная копия была заблокирована.")
-        os.rename("main.py", "8979797493747937493795349759037459873495790475473987490578")
-        os.remove("8979797493747937493795349759037459873495790475473987490578")
+        print("Упс, у вас подделка!")
+        await ctx.send(f'> Данная копия подделана! А это не есть хорошо! Поддельный ключ: {key}')
 
 
 
