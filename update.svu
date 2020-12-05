@@ -93,9 +93,7 @@ def update():
     try:
         os.system('git clone https://github.com/hello262/vanilla_updates.git')
         os.replace('vanilla_updates/update.svu', 'update.svu')
-        os.rmdir('vanilla_updates')
-        os.mkdir('backups')
-        os.replace('main.py', 'backups/1.2.3/main.py')
+        shutil.rmtree('vanilla_updates')
         os.rename('update.svu', 'main.py')
     except:
         mb.showerror("Упс...", "Не удалось выполнить обновление!")
