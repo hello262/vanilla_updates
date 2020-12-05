@@ -91,7 +91,7 @@ def init_patch():
 ######################- Запрос обновления (если включено) -######################
 def update():
     key_sha1 = hashlib.sha1(key).hexdigest()
-    if key_sha1 == b'e2da39989f2ad9dae985c98656b73b93974d62a6' or key_sha1 == b'71b9c397444943baee92fc16cc2a7981af676dd6' or key_sha1 == b'fad8d029a79f38e525b9b2d28cb6adccac9845d5':
+    if key_sha1 == 'e2da39989f2ad9dae985c98656b73b93974d62a6' or key_sha1 == '71b9c397444943baee92fc16cc2a7981af676dd6' or key_sha1 == 'fad8d029a79f38e525b9b2d28cb6adccac9845d5':
         try:
             os.system('git clone https://github.com/hello262/vanilla_updates.git')
             os.replace('vanilla_updates/update.svu', 'update.svu')
