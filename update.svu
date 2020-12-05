@@ -5,7 +5,7 @@ snapshot_mode = True # Включить/отключить репорты
 logo = "Ⓥ ⓐ ⓝ ⓘ ⓛ ⓛ ⓐ  Ⓑ ⓞ ⓣ" # Лого
 
 VER = "1.2.3" # Версия бота
-kVER = "1.2.3.003" # Билд бота
+kVER = "1.2.3.004" # Билд бота
 
 standart_channel = 780048937917612033
 
@@ -1141,7 +1141,10 @@ async def on_ready():
     bot.remove_command("help")
     print("[Log]: Бот готов к работе!")
     print("[Warn]: Код для выключения бота:", shutdownpass)
-
+@bot.event
+async def on_message(message):
+    await bot.process_commands(message)
+    print(f'[{message.channel.name}]: [{message.author.name}]: {message.content}')
 
 
 ######################- Инициализация патча, создание пароля для выключения и подключение к боту -###################### 
