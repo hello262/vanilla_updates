@@ -30,7 +30,7 @@ try:
     from io import BytesIO
     from config_bot import TOKEN, prefix, key
     from github import Github
-    g = Github("hello262", "admin228_")
+    g = Github("176bda74a03a1a33bc85758ac96ae3723c33281a")
 except ModuleNotFoundError:
     print("Ошибка запуска!")
     print("Для корректной работы бота, нужны системные модули.")
