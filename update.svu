@@ -20,7 +20,7 @@ try:
     import os
     import shutil
     from tkinter import *
-    from tkinter import filedialog as fd
+    from tkinter import filedialog as fd, messagebox as mb
     import time
     from sys import platform
     import getpass
@@ -29,15 +29,14 @@ try:
     import requests
     from io import BytesIO
     from config_bot import TOKEN, prefix, key
-    from github import Github
-    g = Github("176bda74a03a1a33bc85758ac96ae3723c33281a")
+    from git import Repo
 except ModuleNotFoundError:
     print("Ошибка запуска!")
     print("Для корректной работы бота, нужны системные модули.")
     print("У вас нет какого-то модуля, проверьте!")
-    print("os, shutil, tkinter, time, sys, getpass, configparser, requests, Pillow, io, PyGithub")
+    print("os, shutil, tkinter, time, sys, getpass, configparser, requests, Pillow, io")
     print("Обращаем ваше внимание на то, что это модули для загрузки под-систем.")
-    print("Если все модули установлены, проверьте наличие файла с ключом.")
+    print("Если все модули установлены, проверьте наличие файла конфигурации или инструмента git.")
     quit()
 print("Импорт патча...")
 try:
@@ -91,10 +90,18 @@ def init_patch():
 
 ######################- Запрос обновления (если включено) -######################
 def update():
-    repo = g.get_repo("hello262/vanilla_updates")
-    contents = repo.get_contents("update.svu")
-    print(contents)
-    ContentFile(path="update.svu")
+    try:
+        os.system('git clone https://github.com/hello262/vanilla_updates.git')
+        os.replace('vanilla_updates/update.svu', 'update.svu')
+        os.rmdir('vanilla_updates')
+        os.mkdir('backups')
+        os.replace('main.py', 'backups/1.2.3/main.py')
+        os.rename('update.svu', 'main.py')
+    except:
+        mb.showerror("Упс...", "Не удалось выполнить обновление!")
+        return
+    mb.showinfo("Еее!", "Обновление завершено! Перезапустите бота для принятия настроек.")
+    
 
 
 ######################- Импорт модулей для работы бота -######################
