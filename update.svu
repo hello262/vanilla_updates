@@ -47,6 +47,13 @@ except ModuleNotFoundError:
 
 
 
+######################- Проверка подлинности -######################
+key_sha1 = hashlib.sha1(key).hexdigest()
+if key_sha1 == "e2da39989f2ad9dae985c98656b73b93974d62a6" or key_sha1 == "71b9c397444943baee92fc16cc2a7981af676dd6" or key_sha1 == "fad8d029a79f38e525b9b2d28cb6adccac9845d5":
+    status_verify = True
+else:
+    status_verify = False
+
 ######################- Системные функции -######################
 def error_screen(errorcode):
     print("###########################################################################################################")
@@ -90,8 +97,7 @@ def init_patch():
 
 ######################- Запрос обновления (если включено) -######################
 def update():
-    key_sha1 = hashlib.sha1(key).hexdigest()
-    if key_sha1 == 'e2da39989f2ad9dae985c98656b73b93974d62a6' or key_sha1 == '71b9c397444943baee92fc16cc2a7981af676dd6' or key_sha1 == 'fad8d029a79f38e525b9b2d28cb6adccac9845d5':
+    if status_verify == True:
         try:
             os.system('git clone https://github.com/hello262/vanilla_updates.git')
             os.replace('vanilla_updates/update.svu', 'update.svu')
@@ -1111,13 +1117,6 @@ async def unmute(ctx, member: discord.Member):
 @bot.command()
 async def verify(ctx):
     print(f'Пользователь {ctx.author.name} проверяет активацию бота...')
-    await ctx.send('Верификация ключа продукта...')
-    key_ = hashlib.sha1(key).hexdigest() 
-    if str(key_) == "e2da39989f2ad9dae985c98656b73b93974d62a6" or key == "71b9c397444943baee92fc16cc2a7981af676dd6" or key == "fad8d029a79f38e525b9b2d28cb6adccac9845d5":
-        status_verify = True
-    else:
-        status_verify = False
-    await ctx.send('Данные получены, преобразование...')
     if status_verify == True:
         print("Расслабьтесь, ваша копия активирована!")
         await ctx.send("> Данная копия активирована!")
