@@ -1,3 +1,4 @@
+#####################-For host Repl.it-#####################
 ######################- Переменные -######################
 snapshot_mode = True # Включить/отключить репорты
 
@@ -18,6 +19,7 @@ yellow = "rgb(255, 255, 0)"
 ######################- Импорт модулей для запуска -######################
 try:
     import os
+    from keep_alive import keep_alive
     import subprocess
     import shutil
     from tkinter import *
@@ -1146,7 +1148,7 @@ async def verify(ctx):
 
 
 ######################- "Евенты" -###################### 
-@bot.event
+#@bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument ):
         print("[Error]: Пользователь", ctx.author.name, "не ввел аргументы!")
@@ -1175,6 +1177,9 @@ shutdownpass = str(random.randint(174972947937, 22693479279384717923749270174923
 def start():
     window.destroy()
     print("[Log]: Попытка соединится с сервером...")
+  
+    keep_alive()
+    token = os.environ.get("DISCORD_BOT_SECRET")
     bot.run(TOKEN)
 
 
