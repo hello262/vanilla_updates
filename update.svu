@@ -801,7 +801,7 @@ async def report(ctx, *, arg):
         type_cfg = config.get(ctx.author.name, "Type")
         if login_cfg == "True":
             random_token = str(random.randint(000000000000000, 999999999999999))
-            path = str("reports/" + random_token + ".ini")
+            path = str("../reports/" + random_token + ".ini")
             config = configparser.ConfigParser()
             config.add_section(random_token)
             config.set(random_token, "Nick", ctx.author.name)
@@ -834,7 +834,7 @@ async def repstatus(ctx, code_session):
     login_cfg = config.get(ctx.author.name, "Login")
     type_cfg = config.get(ctx.author.name, "Type")
     if login_cfg == "True":
-        path2 = str("reports/" + code_session + ".ini")
+        path2 = str("../reports/" + code_session + ".ini")
         try:
             config.read(path2)
         except:
@@ -862,7 +862,7 @@ async def editrep(ctx, code_session, *, text):
     if login_cfg == "True":
         if type_cfg == "root":
             try:
-                path2 = str("reports/" + code_session + ".ini")
+                path2 = str("../reports/" + code_session + ".ini")
                 config.read(path2)
                 config.get(code_session, "Status")
                 config.set(code_session, "Status", text)
@@ -880,7 +880,7 @@ async def editrep(ctx, code_session, *, text):
             print("[Log]: Готово")
         elif type_cfg == "Console":
             try:
-                path2 = str("reports/" + code_session + ".ini")
+                path2 = str("../reports/" + code_session + ".ini")
                 config.read(path2)
                 config.get(code_session, "Status")
                 config.set(code_session, "Status", text)
@@ -898,7 +898,7 @@ async def editrep(ctx, code_session, *, text):
             print("[Log]: Готово")
         elif type_cfg == "Admin":
             try:
-                path2 = str("reports/" + code_session + ".ini")
+                path2 = str("../reports/" + code_session + ".ini")
                 config.read(path2)
                 config.get(code_session, "Status")
                 config.set(code_session, "Status", text)
@@ -1043,8 +1043,8 @@ async def account(ctx):
         idraw.text((130, 70), f'Ваниль: {vanills}', font = undertext)
         idraw.text((130, 90), f'Тариф: {typee}', font = undertext)
         idraw.text((100, 170), f'{tokenn}', font = tokentext)
-        img.save(f'cards/{ctx.author.name}.png')
-        await ctx.send(file = discord.File(fp = f'cards/{ctx.author.name}.png'))
+        img.save(f'../cards/{ctx.author.name}.png')
+        await ctx.send(file = discord.File(fp = f'../cards/{ctx.author.name}.png'))
 
 
     else:
