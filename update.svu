@@ -172,7 +172,7 @@ async def повтори(ctx, *, arg):
     print("[Log]: Пользователь", ctx.author.name, "использовал команду.")
     config = configparser.ConfigParser()
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
     type_cfg = config.get(ctx.author.name, "Type")
@@ -196,7 +196,7 @@ async def ban(ctx, user:discord.User, *, reason):
     print("[Log]: Пользователь", ctx.author.name, "пытается забанить", str(user) + ".")
     config = configparser.ConfigParser()
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
     type_cfg = config.get(ctx.author.name, "Type")
@@ -231,7 +231,7 @@ async def time(ctx):
 async def mode(ctx):
     print("[Log]: Пользователь", ctx.author.name, "использовал команду.")
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
@@ -274,7 +274,7 @@ async def register(ctx):
         with open(path, "w") as config_file:
             config.write(config_file)
     await ctx.send("Регистрация аккаунта...")
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     createConfig(path)
     one = "> Токен вашего нового аккаунта: " + random_token
     two = "> Пароль аккаунта: " + random_pass
@@ -289,7 +289,7 @@ async def mytoken(ctx):
     print("[Log]: Пользователь", ctx.author.name, "использовал команду.")
     config = configparser.ConfigParser()
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config.read(path)
     mytoken_check = config.get(ctx.author.name, "Token")
     await ctx.author.send(mytoken_check)
@@ -298,7 +298,7 @@ async def mytoken(ctx):
 async def changepass(ctx, newpass):
     print("[Log]: Пользователь", ctx.author.name, "использовал команду.")
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     changepass_check = config.get(ctx.author.name, "perm_to_change_pass")
@@ -317,7 +317,7 @@ async def login(ctx, password):
     print("[Log]: Пользователь", ctx.author.name, "использовал команду.")
     config = configparser.ConfigParser()
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config.read(path)
     password_cfg = config.get(ctx.author.name, "Password")
     login_cfg = config.get(ctx.author.name, "Login")
@@ -337,7 +337,7 @@ async def unlogin(ctx):
     print("[Log]: Пользователь", ctx.author.name, "использовал команду.")
     config = configparser.ConfigParser()
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
     if login_cfg == "True":
@@ -351,7 +351,7 @@ async def unlogin(ctx):
 async def loterey_vs(ctx):
     print("[Log]: Пользователь", ctx.author.name, "использовал команду.")
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
@@ -401,7 +401,7 @@ async def promo(ctx, promo):
     print("[Log]: Пользователь", ctx.author.name, "использовал команду.")
     config = configparser.ConfigParser()
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
     coin_cfg = config.get(ctx.author.name, "Coins")
@@ -427,7 +427,7 @@ async def promo(ctx, promo):
 async def createpromo(ctx, promoname, coins):
     print("[Log]: Пользователь", ctx.author.name, "использовал команду.")
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
@@ -582,7 +582,7 @@ async def buy_list(ctx):
 async def getvanilla(ctx, vanilla):
     print("[Log]: Пользователь", ctx.author.name, "использовал команду.")
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
@@ -631,7 +631,7 @@ async def kick(ctx, user:discord.User, *, reason):
     print("[Log]: Пользователь", ctx.author.name, "пытается кикнуть", str(user) + ".")
     config = configparser.ConfigParser()
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
     type_cfg = config.get(ctx.author.name, "Type")
@@ -665,7 +665,7 @@ async def warn(ctx, member:discord.Member, *, reason):
     print("[Log]: Пользователь", ctx.author.name, "пытается предупредить", str(member) + ".")
     config = configparser.ConfigParser()
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
     type_cfg = config.get(ctx.author.name, "Type")
@@ -698,7 +698,7 @@ async def warn(ctx, member:discord.Member, *, reason):
 async def createcard(ctx, name):
     print("[Log]: Пользователь", ctx.author.name, "использовал команду.")
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
@@ -717,7 +717,7 @@ async def createcard(ctx, name):
             with open(path2, "w") as config_file:
                 config.write(config_file)
         await ctx.send("Регистрация...")
-        path = str("accounts" + author + ".ini")
+        path = str(author + ".ini")
         createConfig(path)
         await ctx.send("Готово!")        
     else:
@@ -726,7 +726,7 @@ async def createcard(ctx, name):
 async def uplvl(ctx):
     print("[Log]: Пользователь", ctx.author.name, "использовал команду.")
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
@@ -734,7 +734,7 @@ async def uplvl(ctx):
     if login_cfg == "True":
         author = ctx.author.name
         author2 = ctx.author.name + "_card"
-        path = str("accounts" + author + ".ini")
+        path = str(author + ".ini")
         config.read(path)
         coins_cfg = config.get(author, "Coins")
         if int(coins_cfg) == 100:
@@ -771,7 +771,7 @@ async def uplvl(ctx):
 async def mycard(ctx):
     print("[Log]: Пользователь", ctx.author.name, "использовал команду.")
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
@@ -794,14 +794,14 @@ async def report(ctx, *, arg):
     reptime = datetime.now().time()
     if snapshot_mode == True:
         author = ctx.author.name
-        path = str("accounts" + author + ".ini")
+        path = str(author + ".ini")
         config = configparser.ConfigParser()
         config.read(path)
         login_cfg = config.get(ctx.author.name, "Login")
         type_cfg = config.get(ctx.author.name, "Type")
         if login_cfg == "True":
             random_token = str(random.randint(000000000000000, 999999999999999))
-            path = str("../reports/" + random_token + ".ini")
+            path = str("reports/" + random_token + ".ini")
             config = configparser.ConfigParser()
             config.add_section(random_token)
             config.set(random_token, "Nick", ctx.author.name)
@@ -828,13 +828,13 @@ async def report(ctx, *, arg):
 async def repstatus(ctx, code_session):
     print("[Log]: Пользователь", ctx.author.name, "использовал команду.")
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
     type_cfg = config.get(ctx.author.name, "Type")
     if login_cfg == "True":
-        path2 = str("../reports/" + code_session + ".ini")
+        path2 = str("reports/" + code_session + ".ini")
         try:
             config.read(path2)
         except:
@@ -854,7 +854,7 @@ async def repstatus(ctx, code_session):
 async def editrep(ctx, code_session, *, text):
     print("[Log]: Пользователь", ctx.author.name, "отвечает на репорт.")
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
@@ -862,7 +862,7 @@ async def editrep(ctx, code_session, *, text):
     if login_cfg == "True":
         if type_cfg == "root":
             try:
-                path2 = str("../reports/" + code_session + ".ini")
+                path2 = str("reports/" + code_session + ".ini")
                 config.read(path2)
                 config.get(code_session, "Status")
                 config.set(code_session, "Status", text)
@@ -877,10 +877,10 @@ async def editrep(ctx, code_session, *, text):
             await channel.send("Администратор " + ctx.author.name + " ответил на вопрос под номером " + code_session)
             await channel.send(f'Проверить: {prefix}repstatus {code_session}')
             await ctx.send("Статус обновлён!")
-            print("[Log]: Готово")
+            print("[Log]: Готово")  
         elif type_cfg == "Console":
             try:
-                path2 = str("../reports/" + code_session + ".ini")
+                path2 = str("reports/" + code_session + ".ini")
                 config.read(path2)
                 config.get(code_session, "Status")
                 config.set(code_session, "Status", text)
@@ -895,10 +895,10 @@ async def editrep(ctx, code_session, *, text):
             await channel.send("Администратор " + ctx.author.name + " ответил на вопрос под номером " + code_session)
             await channel.send(f'Проверить: {prefix}repstatus {code_session}')
             await ctx.send("Статус обновлён!")
-            print("[Log]: Готово")
+            print("[Log]: Готово")  
         elif type_cfg == "Admin":
             try:
-                path2 = str("../reports/" + code_session + ".ini")
+                path2 = str("reports/" + code_session + ".ini")
                 config.read(path2)
                 config.get(code_session, "Status")
                 config.set(code_session, "Status", text)
@@ -922,7 +922,7 @@ async def editrep(ctx, code_session, *, text):
 async def sysinfo(ctx):
     print("[Log]: Пользователь", ctx.author.name, "попытался посмотреть системную информацию.")
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
@@ -957,7 +957,7 @@ async def sysinfo(ctx):
 async def cls(ctx):
     print("[Warn]: Пользователь", ctx.author.name, "пытается очистить консоль!")
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
@@ -980,7 +980,7 @@ async def check(ctx):
 async def edit(ctx, file, stolb, stroka, argument):
     print("[Warn]: Пользователь", ctx.author.name, "пытается изменить значение файла!")
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
@@ -1008,7 +1008,7 @@ async def account(ctx):
     print("-------------------------------------------------------------------------------")
     print("[Log]: Пользователь", ctx.author.name, "просматривает свою статистику.")
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
@@ -1043,8 +1043,8 @@ async def account(ctx):
         idraw.text((130, 70), f'Ваниль: {vanills}', font = undertext)
         idraw.text((130, 90), f'Тариф: {typee}', font = undertext)
         idraw.text((100, 170), f'{tokenn}', font = tokentext)
-        img.save(f'../cards/{ctx.author.name}.png')
-        await ctx.send(file = discord.File(fp = f'../cards/{ctx.author.name}.png'))
+        img.save(f'cards/{ctx.author.name}.png')
+        await ctx.send(file = discord.File(fp = f'cards/{ctx.author.name}.png'))
 
 
     else:
@@ -1070,7 +1070,7 @@ async def contacts(ctx):
 @bot.command()
 async def mute(ctx, member: discord.Member, *, reason):
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
@@ -1103,7 +1103,7 @@ async def mute(ctx, member: discord.Member, *, reason):
 @bot.command()
 async def unmute(ctx, member: discord.Member):
     author = ctx.author.name
-    path = str("accounts" + author + ".ini")
+    path = str(author + ".ini")
     config = configparser.ConfigParser()
     config.read(path)
     login_cfg = config.get(ctx.author.name, "Login")
