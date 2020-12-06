@@ -5,7 +5,7 @@ snapshot_mode = True # Включить/отключить репорты
 logo = "Ⓥ ⓐ ⓝ ⓘ ⓛ ⓛ ⓐ  Ⓑ ⓞ ⓣ" # Лого
 
 VER = "1.2.3" # Версия бота
-kVER = "1.2.3.004" # Билд бота
+kVER = "1.2.3.005" # Билд бота
 
 standart_channel = 780048937917612033
 
@@ -37,7 +37,6 @@ except ModuleNotFoundError:
     print("os, shutil, tkinter, time, sys, getpass, configparser, requests, Pillow, io, hashlib")
     print("Обращаем ваше внимание на то, что это модули для загрузки под-систем.")
     print("Если все модули установлены, проверьте наличие файла конфигурации или инструмента git.")
-    quit()
 print("Импорт патча...")
 try:
     from patch import *
@@ -1144,7 +1143,10 @@ async def on_ready():
 @bot.event
 async def on_message(message):
     await bot.process_commands(message)
-    print(f'[{message.channel.name}]: [{message.author.name}]: {message.content}')
+    try:
+        print(f'[{message.channel.name}]: [{message.author.name}]: {message.content}')
+    except:
+        print(f'[Личные сообщения бота]: [{message.author.name}]: {message.content}')
 
 
 ######################- Инициализация патча, создание пароля для выключения и подключение к боту -###################### 
@@ -1168,6 +1170,7 @@ lbl2 = Label(window, text="Билд:")
 lbl3 = Label(window, text=kVER)
 btn = Button(window, text="Запуск", command=start)
 btn_update = Button(window, text="Update", command=update)
+btn_exit = Button(window, text="Выход", command=quit)
 
 lbl.grid(column=0, row=0) 
 lbl1.grid(column=1, row=0) 
@@ -1175,5 +1178,6 @@ lbl2.grid(column=0, row=1)
 lbl3.grid(column=1, row=1) 
 btn.grid(column=0, row=2)  
 btn_update.grid(column=0, row=3)
+btn_exit.grid(column=0, row=4)
 
 window.mainloop()
