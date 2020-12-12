@@ -5,7 +5,7 @@ snapshot_mode = True # Включить/отключить репорты
 logo = "Ⓥ ⓐ ⓝ ⓘ ⓛ ⓛ ⓐ  Ⓑ ⓞ ⓣ" # Лого
 
 VER = "1.2.3" # Версия бота
-kVER = "1.2.3.006" # Билд бота
+kVER = "1.2.3.007" # Билд бота
 
 standart_channel = 780048937917612033
 
@@ -100,25 +100,6 @@ def init_patch():
         print("(ядро не пропатчено)")
         print("----------------------------------------------------")
         pass
-
-
-
-######################- Запрос обновления (если включено) -######################
-def update():
-    if status_verify == True:
-        try:
-            os.system('git clone https://github.com/hello262/vanilla_updates.git')
-            os.replace('vanilla_updates/update.svu', 'update.svu')
-            shutil.rmtree('vanilla_updates')
-            os.rename('update.svu', 'main.py')
-        except:
-            mb.showerror("Упс...", "Не удалось выполнить обновление!")
-            return
-        mb.showinfo("Еее!", "Обновление завершено! Перезапустите бота для принятия настроек.")
-        pass
-    else:
-        mb.showinfo("Стоять!", "Пиратам обновления не положены!")
-        return
 
 
 ######################- Импорт модулей для работы бота -######################
@@ -247,7 +228,7 @@ async def mode(ctx):
                     await ctx.send("Бот перешёл в автоматический режим. Все раннее заданные команды будут выполнены сейчас.")
                     return
                 elif text == "":
-                    await ctx.send("[Error]: Пустая строка!")
+                    print("[Error]: Пустая строка!")
                 else:
                     await ctx.send(text)
         else:
@@ -1142,12 +1123,51 @@ async def verify(ctx):
         await ctx.send("> Данная копия активирована!")
     else:
         print("Упс, у вас подделка!")
-        await ctx.send(f'> Данная копия подделана! А это не есть хорошо! Поддельный ключ: {key}')
-
+        await ctx.send(f'> У вас пробная версия, пожалуйста, активируйте копию!')
+@bot.command()
+async def news(ctx):
+    try:
+        os.system('git clone https://github.com/hello262/vanilla_news.git')
+        os.replace('vanilla_news/new.py', 'new.py')
+        shutil.rmtree('vanilla_news')
+        from key_test import date, text_new
+        await ctx.send(f'Новость {date}')
+        await ctx.send(f'"{text_new}"')
+        os.remove('new.py')
+    except:
+        await ctx.send("Упс, не удалось загрузить новости!")
+async def update(ctx):
+    print("[Log]: Пользователь", ctx.author.name, "обновляет бота")
+    author = ctx.author.name
+    path = str(author + ".ini")
+    config = configparser.ConfigParser()
+    config.read(path)
+    login_cfg = config.get(ctx.author.name, "Login")
+    type_cfg = config.get(ctx.author.name, "Type")
+    if login_cfg == "True":
+        if type_cfg == "root":
+            if status_verify == True:
+                try:
+                    os.system('git clone https://github.com/hello262/vanilla_updates.git')
+                    os.replace('vanilla_updates/update.svu', 'update.svu')
+                    shutil.rmtree('vanilla_updates')
+                    os.rename('update.svu', 'main.py')
+                except:
+                    await ctx.send("Упс... Не удалось выполнить обновление!")
+                    return
+                await ctx.send("Еее! Обновление завершено! Перезапустите бота для принятия настроек.")
+                pass
+            else:
+                await ctx.send("Обновления доступны только лицензионным копиям!")
+                return    
+        else:
+            await ctx.send("Недостаточно прав!")
+    else:
+        await ctx.send("Вы не авторизированы!")
 
 
 ######################- "Евенты" -###################### 
-#@bot.event
+@bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, commands.MissingRequiredArgument ):
         print("[Error]: Пользователь", ctx.author.name, "не ввел аргументы!")
