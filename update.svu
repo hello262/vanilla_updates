@@ -18,27 +18,84 @@ yellow = "rgb(255, 255, 0)"
 ######################- Импорт модулей для запуска -######################
 try:
     import os
+except ModuleNotFoundError:
+    print("Not found os")
+    pass
+
+try:
     from keep_alive import keep_alive
+except ModuleNotFoundError:
+    print("Not found keep_alive")
+    pass
+
+try:
     import subprocess
+except ModuleNotFoundError:
+    print("Not found subprocess")
+    pass
+
+try:
     import shutil
+except ModuleNotFoundError:
+    print("Not found shutil")
+    pass
+
+try:
     from tkinter import *
     from tkinter import filedialog as fd, messagebox as mb
+except ModuleNotFoundError:
+    print("Not found tkinter")
+    pass
+
+try:    
     import time
+except ModuleNotFoundError:
+    print("Not found time")
+    pass
+
+try:
     from sys import platform
+except ModuleNotFoundError:
+    print("Not found sys")
+    pass
+
+try:
     import getpass
+except ModuleNotFoundError:
+    print("Not found getpass")
+    pass
+
+try:    
     import configparser
+except ModuleNotFoundError:
+    print("Not found configparser")
+    pass
+
+try:    
     from PIL import Image, ImageFont, ImageDraw
+except ModuleNotFoundError:
+    print("Not found Pillow")
+    pass
+
+try:
     import requests
+except ModuleNotFoundError:
+    print("Not found requests")
+    pass
+
+try:
     import hashlib
+except ModuleNotFoundError:
+    print("Not found hashlib")
+    pass
+
+try:
     from io import BytesIO
     from config_bot import TOKEN, prefix, key
 except ModuleNotFoundError:
-    print("Ошибка запуска!")
-    print("Для корректной работы бота, нужны системные модули.")
-    print("У вас нет какого-то модуля, проверьте!")
-    print("os, shutil, tkinter, time, sys, getpass, configparser, requests, Pillow, io, hashlib")
-    print("Обращаем ваше внимание на то, что это модули для загрузки под-систем.")
-    print("Если все модули установлены, проверьте наличие файла конфигурации или инструмента git.")
+    print("Not found io")
+    pass
+
 print("Импорт патча...")
 try:
     from patch import *
@@ -1130,7 +1187,7 @@ async def news(ctx):
         os.system('git clone https://github.com/hello262/vanilla_news.git')
         os.replace('vanilla_news/new.py', 'new.py')
         shutil.rmtree('vanilla_news')
-        from key_test import date, text_new
+        from new import date, text_new
         await ctx.send(f'Новость {date}')
         await ctx.send(f'"{text_new}"')
         os.remove('new.py')
