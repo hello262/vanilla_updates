@@ -1193,6 +1193,7 @@ async def news(ctx):
         os.remove('new.py')
     except:
         await ctx.send("Упс, не удалось загрузить новости!")
+@bot.command()
 async def update(ctx):
     print("[Log]: Пользователь", ctx.author.name, "обновляет бота")
     author = ctx.author.name
