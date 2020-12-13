@@ -5,7 +5,7 @@ snapshot_mode = True # Включить/отключить репорты
 logo = "Ⓥ ⓐ ⓝ ⓘ ⓛ ⓛ ⓐ  Ⓑ ⓞ ⓣ" # Лого
 
 VER = "1.2.3" # Версия бота
-kVER = "1.2.3.007" # Билд бота
+kVER = "1.2.3.008" # Билд бота
 
 standart_channel = 780048937917612033
 
@@ -1181,6 +1181,23 @@ async def verify(ctx):
     else:
         print("Упс, у вас подделка!")
         await ctx.send(f'> У вас пробная версия, пожалуйста, активируйте копию!')
+@bot.command()
+async def news(ctx):
+    try:
+        os.system('git clone https://github.com/hello262/vanilla_news.git')
+        os.replace('vanilla_news/text.txt', 'text.txt')
+        os.replace('vanilla_news/datee.txt', 'datee.txt')
+        shutil.rmtree('vanilla_news')
+        f = open('text.txt')
+        g = open('datee.txt')
+        text_new = f.read()
+        date = g.read()
+        await ctx.send(f'Новость {date}')
+        await ctx.send(f'"{text_new}"')
+        os.remove('text.txt')
+        os.remove('datee.txt')
+    except:
+        await ctx.send("Упс, не удалось загрузить новости!")
 @bot.command()
 async def update(ctx):
     print("[Log]: Пользователь", ctx.author.name, "обновляет бота")
