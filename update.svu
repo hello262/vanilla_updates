@@ -1182,18 +1182,6 @@ async def verify(ctx):
         print("Упс, у вас подделка!")
         await ctx.send(f'> У вас пробная версия, пожалуйста, активируйте копию!')
 @bot.command()
-async def news(ctx):
-    try:
-        os.system('git clone https://github.com/hello262/vanilla_news.git')
-        os.replace('vanilla_news/new.py', 'new.py')
-        shutil.rmtree('vanilla_news')
-        from new import date, text_new
-        await ctx.send(f'Новость {date}')
-        await ctx.send(f'"{text_new}"')
-        os.remove('new.py')
-    except:
-        await ctx.send("Упс, не удалось загрузить новости!")
-@bot.command()
 async def update(ctx):
     print("[Log]: Пользователь", ctx.author.name, "обновляет бота")
     author = ctx.author.name
