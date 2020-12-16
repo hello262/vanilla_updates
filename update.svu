@@ -5,7 +5,7 @@ snapshot_mode = True # Включить/отключить репорты
 logo = "Ⓥ ⓐ ⓝ ⓘ ⓛ ⓛ ⓐ  Ⓑ ⓞ ⓣ" # Лого
 
 VER = "1.2.3" # Версия бота
-kVER = "1.2.3.008" # Билд бота
+kVER = "1.2.3.010" # Билд бота
 
 standart_channel = 780048937917612033
 
@@ -21,87 +21,102 @@ try:
 except ModuleNotFoundError:
     print("Not found os")
     pass
+    input()
+    quit()
 
 try:
     from keep_alive import keep_alive
 except ModuleNotFoundError:
     print("Not found keep_alive")
-    pass
+    input()
+    quit()
 
 try:
     import subprocess
 except ModuleNotFoundError:
     print("Not found subprocess")
-    pass
+    input()
+    quit()
 
 try:
     import shutil
 except ModuleNotFoundError:
     print("Not found shutil")
-    pass
+    input()
+    quit()
 
 try:
     from tkinter import *
     from tkinter import filedialog as fd, messagebox as mb
 except ModuleNotFoundError:
     print("Not found tkinter")
-    pass
+    input()
+    quit()
 
 try:    
     import time
 except ModuleNotFoundError:
     print("Not found time")
-    pass
+    input()
+    quit()
 
 try:
     from sys import platform
 except ModuleNotFoundError:
     print("Not found sys")
-    pass
+    input()
+    quit()
 
 try:
     import getpass
 except ModuleNotFoundError:
     print("Not found getpass")
-    pass
+    input()
+    quit()
 
 try:    
     import configparser
 except ModuleNotFoundError:
     print("Not found configparser")
-    pass
+    input()
+    quit()
 
 try:    
     from PIL import Image, ImageFont, ImageDraw
 except ModuleNotFoundError:
     print("Not found Pillow")
-    pass
+    input()
+    quit()
 
 try:
     import requests
 except ModuleNotFoundError:
     print("Not found requests")
-    pass
+    input()
+    quit()
 
 try:
     import hashlib
 except ModuleNotFoundError:
     print("Not found hashlib")
-    pass
+    input()
+    quit()
 
 try:
     from io import BytesIO
     from config_bot import TOKEN, prefix, key
 except ModuleNotFoundError:
     print("Not found io")
-    pass
+    input()
+    quit()
 
 print("Импорт патча...")
 try:
     from patch import *
 except ModuleNotFoundError:
     print("Неудача!")
-    pass
+    input()
+    quit()
 
 
 
@@ -306,7 +321,7 @@ async def register(ctx):
         config.set(ctx.author.name, "Password", random_pass)
         config.set(ctx.author.name, "perm_to_change_pass", "False")
         config.set(ctx.author.name, "Login", "False")
-        config.set(ctx.author.name, "Coins", "0")
+        config.set(ctx.author.name, "Coins", "100")
         config.set(ctx.author.name, "Vanills", "0")
         config.set(ctx.author.name, "Arend", "False")
         config.set(ctx.author.name, "OldType", "False")
@@ -585,7 +600,7 @@ async def buy(ctx, tariff):
                 print("[Error]: Нет доступа!")
                 await ctx.send("В вашем токене не найден root!")
                 return
-        elif tariff == "Vanills":
+        elif tariff == "1k":
             if int(vanills_cfg) == 10:
                 vanillsnew = int(vanills_cfg) - 10
                 coinsnew = int(coins_cfg) + 1000
@@ -615,7 +630,7 @@ async def buy_list(ctx):
     buy_list.add_field(name = "Admin", value = "15к монет - !buy Admin")
     buy_list.add_field(name = "Console", value = "500к монет - !buy Console")
     buy_list.add_field(name = "root", value = "Не продаётся!")
-    buy_list.add_field(name = "1000 монет", value = "10 ванили - !buy Vanills")
+    buy_list.add_field(name = "1000 монет", value = "10 ванили - !buy 1k")
     await ctx.send(embed = buy_list)
 @bot.command()
 async def getvanilla(ctx, vanilla):
@@ -712,23 +727,23 @@ async def warn(ctx, member:discord.Member, *, reason):
         if type_cfg == "root":
             print("[Warn]: Пользователь", str(member), "был предупреждён по причине:", reason + ".")
             await member.send("Вас предупредил " + ctx.author.name + ": " + reason)
-            await ctx.send("Пользователь предупреждён по причине: " + reason) 
+            await ctx.send("Пользователь " + str(member) + " предупреждён по причине: " + reason) 
         elif type_cfg == "Admin":
             print("[Warn]: Пользователь", str(member), "был предупреждён по причине:", reason + ".")
             await member.send("Вас предупредил " + ctx.author.name + ": " + reason)
-            await ctx.send("Пользователь предупреждён по причине: " + reason) 
+            await ctx.send("Пользователь " + str(member) + " предупреждён по причине: " + reason) 
         elif type_cfg == "Console":
             print("[Warn]: Пользователь", str(member), "был предупреждён по причине:", reason + ".")
             await member.send("Вас предупредил " + ctx.author.name + ": " + reason)
-            await ctx.send("Пользователь предупреждён по причине: " + reason)    
+            await ctx.send("Пользователь " + str(member) + " предупреждён по причине: " + reason)    
         elif type_cfg == "Premium":
             print("[Warn]: Пользователь", str(member), "был предупреждён по причине:", reason + ".")
             await member.send("Вас предупредил " + ctx.author.name + ": " + reason)
-            await ctx.send("Пользователь предупреждён по причине: " + reason)  
+            await ctx.send("Пользователь " + str(member) + " предупреждён по причине: " + reason)  
         elif type_cfg == "VIP":
             print("[Warn]: Пользователь", str(member), "был предупреждён по причине:", reason + ".")
             await member.send("Вас предупредил " + ctx.author.name + ": " + reason)
-            await ctx.send("Пользователь предупреждён по причине: " + reason)         
+            await ctx.send("Пользователь " + str(member) + " предупреждён по причине: " + reason)         
         else:
             await ctx.send("Недостаточно прав!")
     else:
@@ -1104,7 +1119,6 @@ async def contacts(ctx):
     help_emb = discord.Embed(title = "Контакты")
     help_emb.add_field(name = "XXXX_I_XXXX", value = "VK - 'vk.com/id_311111'; Discord - 'lohblyat#9227'. Владелец Ванили.")
     help_emb.add_field(name = "ariflan", value = "Discord - 'ariflan#8217'. Технический администратор Ванили.")
-    help_emb.add_field(name = "Farka", value = "Discord - 'Farka#0055'. Консольщик Ванили.")
     await ctx.send(embed = help_emb)
 @bot.command()
 async def mute(ctx, member: discord.Member, *, reason):
@@ -1238,6 +1252,9 @@ async def on_command_error(ctx, error):
     elif isinstance(error, commands.CommandNotFound ):
         print("[Error]: Пользователь", ctx.author.name, "ввел не существующую команду!")
         await ctx.send("Команды не существует!")
+    else:
+        print("[Error]: Произошла неизвестная ошибка!")
+        await ctx.send("Что-то пошло не так...")
 @bot.event
 async def on_ready():
     print("[Log]: Удаление стандартной команды help...")
