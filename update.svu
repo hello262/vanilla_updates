@@ -5,7 +5,7 @@ snapshot_mode = True # Включить/отключить репорты
 logo = "Ⓥ ⓐ ⓝ ⓘ ⓛ ⓛ ⓐ  Ⓑ ⓞ ⓣ" # Лого
 
 VER = "1.2.3" # Версия бота
-kVER = "1.2.3.010" # Билд бота
+kVER = "1.2.3.011" # Билд бота
 
 standart_channel = 780048937917612033
 
@@ -114,9 +114,7 @@ print("Импорт патча...")
 try:
     from patch import *
 except ModuleNotFoundError:
-    print("Неудача!")
-    input()
-    quit()
+    print("Патч не найден!")
 
 
 
@@ -335,7 +333,7 @@ async def register(ctx):
     reg_emb = discord.Embed(title = "Итог регистрации")
     reg_emb.add_field(name = "Токен аккаунта:", value = random_token)
     reg_emb.add_field(name = "Пароль от аккаунта:", value = random_pass)
-    reg_emb.add_field(name = "Команда авторизации (вводить тут):", value = "!login " + random_pass)
+    reg_emb.add_field(name = "Команда авторизации (вводить тут):", value = prefix + "login " + random_pass)
     await ctx.author.send(embed = reg_emb)
     await ctx.send("Успешно! Информация выслана вам в ЛС.")
 @bot.command()
@@ -624,13 +622,13 @@ async def buy(ctx, tariff):
 @bot.command()
 async def buy_list(ctx):
     buy_list = discord.Embed(title = "Товары")
-    buy_list.add_field(name = "Free", value = "0 монет - !buy Free")
-    buy_list.add_field(name = "VIP", value = "30 монет - !buy VIP")
-    buy_list.add_field(name = "Premium", value = "500 монет - !buy Premium")
-    buy_list.add_field(name = "Admin", value = "15к монет - !buy Admin")
-    buy_list.add_field(name = "Console", value = "500к монет - !buy Console")
+    buy_list.add_field(name = "Free", value = f"0 монет - {prefix}buy Free")
+    buy_list.add_field(name = "VIP", value = f"30 монет - {prefix}buy VIP")
+    buy_list.add_field(name = "Premium", value = f"500 монет - {prefix}buy Premium")
+    buy_list.add_field(name = "Admin", value = f"15к монет - {prefix}buy Admin")
+    buy_list.add_field(name = "Console", value = f"500к монет - {prefix}buy Console")
     buy_list.add_field(name = "root", value = "Не продаётся!")
-    buy_list.add_field(name = "1000 монет", value = "10 ванили - !buy 1k")
+    buy_list.add_field(name = "1000 монет", value = f"10 ванили - {prefix}buy 1k")
     await ctx.send(embed = buy_list)
 @bot.command()
 async def getvanilla(ctx, vanilla):
