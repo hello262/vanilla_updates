@@ -5,7 +5,7 @@ snapshot_mode = True # Включить/отключить репорты
 logo = "Ⓥ ⓐ ⓝ ⓘ ⓛ ⓛ ⓐ  Ⓑ ⓞ ⓣ" # Лого
 
 VER = "1.2.4" # Версия бота
-kVER = "1.2.4.001" # Билд бота
+kVER = "1.2.4.002" # Билд бота
 
 standart_channel = 780048937917612033
 
@@ -1246,30 +1246,6 @@ async def update(ctx):
             await ctx.send("Недостаточно прав!")
     else:
         await ctx.send("Вы не авторизированы!")
-@bot.command(pass_context=True)
-async def play(ctx, url):
-    print("[Log]: " + ctx.author.name + " пытается подключить бота к voice-чату.")
-    if status_verify == True:
-        global voice
-        channel = ctx.message.author.voice.channel
-        voice = get(bot.voice_clients, guild = ctx.guild)
-        if voice and voice.is_connected():
-          await voice.move_to(channel)
-        else:
-          voice = await channel.connect()
-        voice.stop()
-        voice.play(FFmpegPCMAudio(url))
-        await ctx.message.delete()
-        await ctx.send(f"{ctx.author.name} подключил бота к voice-чату. Сейчас играет: {url}")
-    else:
-        await ctx.send("У вас не активированная версия!")
-@bot.command(pass_context=True)
-async def stop(ctx):
-    try:
-        await ctx.voice_client.disconnect()
-        await ctx.send("Бот успешно отсоединился!")
-    except:
-        await ctx.send("Ошибка!")
 @bot.command()
 async def license(ctx):
     await ctx.send(f"Бот работает при поддержке {name_license}. Тип: {type_license}")
