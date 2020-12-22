@@ -383,7 +383,6 @@ async def login(ctx, password):
     if password == password_cfg:
         if login_cfg == "False":
             config.set(ctx.author.name, "Login", "True")
-            await ctx.send("Вы успешно авторизировались!")
             with open(path, "w") as config_file:
                 config.write(config_file)
             await ctx.message.delete()
