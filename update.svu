@@ -5,7 +5,7 @@ snapshot_mode = True # Включить/отключить репорты
 logo = "Ⓥ ⓐ ⓝ ⓘ ⓛ ⓛ ⓐ  Ⓑ ⓞ ⓣ" # Лого
 
 VER = "1.2.4" # Версия бота
-kVER = "1.2.4.002" # Билд бота
+kVER = "1.2.4.003" # Билд бота
 
 standart_channel = 780048937917612033
 
@@ -386,6 +386,8 @@ async def login(ctx, password):
             await ctx.send("Вы успешно авторизировались!")
             with open(path, "w") as config_file:
                 config.write(config_file)
+            await ctx.message.delete()
+            await ctx.send("Вы успешно авторизировались!")
             return
         else:
             await ctx.send("Вы уже авторизированы!")
